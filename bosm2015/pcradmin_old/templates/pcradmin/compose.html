@@ -1,0 +1,27 @@
+{% extends "pcradmin/base.html" %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="twelve columns textcenter">
+            <h1>COMPOSE</h1>
+            <form action = "./emailsend" method= "POST">
+            
+            {% csrf_token %}
+            To:<input type="textbox" name='to' value = {{emailadd}} disabled= "disabled"} /> <br>
+            Subject: <input type="textbox" name='sub' value = "text"> <br>
+            <input type="textbox" name='body' value =''><br>
+
+
+            <button type="submit" name= "mailadd" value= {{emailadd}}> SEND </button>
+
+
+
+           
+        
+        </form>
+
+
+        </div>
+    </div>
+</div>
+{% endblock body %}

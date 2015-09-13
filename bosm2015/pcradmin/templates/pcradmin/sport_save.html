@@ -1,0 +1,13 @@
+{% extends "pcradmin/base.html" %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="twelve columns textcenter">
+        <h1>Change Sports Limits </h1>
+        <a href="{% url 'pcradmin:dashboard' %}" class="button button-primary">Dashboard</a><br>
+        <p>Limit for {{ event.name }} changed successfully.</p>
+        <a href="{% url 'pcradmin:sportlimits' %}" class="button">Change for Another Sport</a>
+        </div>
+    </div>
+</div>  
+{% endblock body %}

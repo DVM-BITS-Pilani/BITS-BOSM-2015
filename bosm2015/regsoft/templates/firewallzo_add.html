@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>
+FIREWALLZ|OUTERBOOTH|ADD PARTICIPANT
+</title>
+</head>
+<body>
+<div style = "background-color: #3B3738; color: #D9853B; height:40px;font-size: 27px; text-align: center; width: 100%; margin: auto;box-shadow: 0px 0px 30px rgba(33,62,83,0.7)  inset;left:0;top:0; border-radius: 7px;font-family:agency fb;">EVENT REGISTRATION SYSTEM</div>
+<div style = "background: #558C89; color: #E9E581;height:37px;font-size: 24px; text-align: center; width: 100%; padding-top:5px;margin: auto; margin-top: 15px; box-shadow: 0px 0px 25px rgba(33,62,83,0.7) inset; border-radius: 7px;font-family:agency fb;">FIREWALLZ OUTER BOOTH</div><br>
+<center>
+<strong> ADD NEW PARTICIPANT </STRONG>
+<form method="POST" action="http://www.bits-oasis.org/2014/regsoft/firewallz/add/{{ gl_id }}/">
+Name: <input type="text" name="name" id="name" required /> <br>
+Gender:
+<select name="gender" required>
+  <option value="male">Male</option>
+  <option value="female">Female</option>
+</select>
+Email: <input type="email" name="email" id="email" required /> <br>
+Contact: <input type="text" name="contact" id="contact" required /> <br>
+Events : <br>
+<span style="color: red; font-weight: bold">PLEASE SELECT ALL THE EVENTS AGAIN </span></br>
+
+{% for c in category_name_list %}
+<br><b>{{c}}</b><br><br>
+{% for z in event_list %}
+{% if z.category.name == c %}
+<input type="checkbox" name="eventList" value="{{z.id}}"><span style="font-weight: normal;">{{z.name}}</span><br>
+{% endif %}
+{% endfor %}
+{% endfor %}
+<input type="submit" value="Add Participant"/>
+</form>
+{{ message }}
+<form method="POST" action="http://www.bits-oasis.org/2014/regsoft/firewallz/">
+<input type="hidden" name="formtype" value="addform"/>
+<input type="hidden" name="code" id="code" value="{{encoded}}"/>
+<input type="submit" value="Go Back"/>
+</form>
+</center>
+</body>
+</html>

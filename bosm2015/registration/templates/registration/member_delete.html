@@ -1,0 +1,87 @@
+{% extends "registration/base.html" %}
+{% block title %}
+    BOSM 2015 | Delete Members
+{% endblock title %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="twelve columns" id="participants">
+                <h4>DELETE EXISTING MEMBERS</h4>
+            </div>
+            <div class="twelve columns">
+                <h5>PARTICIPANTS</h5>
+                <div class="twelve columns" id="participants">
+                    <table class="u-full-width">
+                      {% if participants %}
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Sex</th>
+                          <th>Events</th>
+                          <th>Remove</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for member in participants %}
+                        <tr>
+                          <td>{{member.name}}</td>
+                          <td>{{member.gender}}</td>
+                          <td>{% for event in member.events.all %}{{event}}  {% endfor %}</td>
+                          <form action="." method="POST">
+                          {% csrf_token %}
+                            <input type="hidden" name="id" value="{{member.id}}">
+                            <td><input class="button-primary" type="submit" name="delete" value="remove"></td>
+                          </form>
+                        </tr>      
+                      {% endfor %}
+                      </tbody>
+                      {% else %}
+                      <thead>
+                        <tr>
+                          <td>No participant registered</td>
+                        </tr>
+                      </thead>
+                      {% endif %}
+                    </table>
+                </div>
+            </div>
+                        <div class="twelve columns">
+                <h5>COACHES</h5>
+                <div class="twelve columns" id="participants">
+                    <table class="u-full-width">
+                      {% if coaches %}
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Sex</th>
+                          <th>Events</th>
+                          <th>Remove</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for member in coaches %}
+                        <tr>
+                          <td>{{member.name}}</td>
+                          <td>{{member.gender}}</td>
+                          <td>{% for event in member.events.all %}{{event}}  {% endfor %}</td>
+                          <form action="." method="POST">
+                          {% csrf_token %}
+                            <input type="hidden" name="id" value="{{member.id}}">
+                            <td><input class="button-primary" type="submit" name="delete" value="remove"></td>
+                          </form>
+                        </tr>      
+                      {% endfor %}
+                      </tbody>
+                      {% else %}
+                      <thead>
+                        <tr>
+                          <td>No coach registered</td>
+                        </tr>
+                      </thead>
+                      {% endif %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

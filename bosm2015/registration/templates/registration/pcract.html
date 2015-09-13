@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+table
+{
+    font-family: arial;
+    text-align: center;
+    border:1px solid black;
+}
+th
+{
+    width: 100px;
+    color:white;
+    background:#226;
+}
+td
+{
+    padding-left: 25px;
+    padding-right: 20px;
+}
+tr:nth-child(even)
+{
+    background: #eee;
+}
+    </style>
+    <title></title>
+</head>
+
+<body>
+<div style = "background-color: #3B3738; color: #D9853B; height:40px;font-size: 27px; text-align: center; width: 100%; margin: auto;box-shadow: 0px 0px 30px rgba(33,62,83,0.7)  inset;left:0;top:0; border-radius: 7px;font-family:agency fb;">Group Leader Confirmation System</div>
+<div style = "background: #558C89; color: #E9E581;height:37px;font-size: 24px; text-align: center; width: 100%; padding-top:5px;margin: auto; margin-top: 15px; box-shadow: 0px 0px 25px rgba(33,62,83,0.7) inset; border-radius: 7px;font-family:agency fb;">::PCR::</div><br>
+<br>
+    <center>
+       <!--  <a href="http://bits-bosm.org/2015/unfreezeall/" target="_blank"> Unfreeze All </a> <br>
+        <a href="http://bits-bosm.org/2015/freezeall/" target="_blank"> Freeze All </a> -->
+    <br>
+	<strong> You cannot send mail before GENERATING PDF </strong>
+<br>
+    <table>
+        <tr>
+            <th>SrNo.<th>
+			<th>Name</th>
+            <th>College</th>
+            <th>Generate PDF</th>
+            <th>View PDF</th>
+            <th>Send Mail</th>
+        </tr>
+        {% for gl in gleader_list %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+				<td>{{gl.firstname}} {{gl.id}}</td>
+                <td>{{gl.college}}</td>
+                <td><a href="/2015/gpdf/{{gl.id}}/" target="_blank">Generate</a></td>
+                <td><a href="/2015/vpdf/{{gl.id}}/" target="_blank">View</a></td>
+                <td><a href="/2015/inviteconfirmation/{{gl.id}}/" target="_blank">Send Email</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    </center>
+</body>
+</html>

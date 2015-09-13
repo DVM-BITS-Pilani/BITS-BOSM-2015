@@ -1,0 +1,74 @@
+<html>
+<head>
+<title>
+Firewallz| GL Allotment
+</title>
+</head>
+<body>
+<div style = "background-color: #3B3738; color: #D9853B; height:40px;font-size: 27px; text-align: center; width: 100%; margin: auto;box-shadow: 0px 0px 30px rgba(33,62,83,0.7)  inset;left:0;top:0; border-radius: 7px;font-family:agency fb;">EVENT REGISTRATION SYSTEM</div>
+<div style = "background: #558C89; color: #E9E581;height:37px;font-size: 24px; text-align: center; width: 100%; padding-top:5px;margin: auto; margin-top: 15px; box-shadow: 0px 0px 25px rgba(33,62,83,0.7) inset; border-radius: 7px;font-family:agency fb;">::FIREWALLZ New Group Leader Selection::</div><br>
+
+
+<div class= "tim">
+<form method="POST" action="http://www.bits-bosm.org/2015/regsoft/firewallz/newgl/{{gl_id}}/">
+<input type="hidden" name="formtype" id="code" value="finalform"/>
+ <table>
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Select</th>
+            
+        </tr>
+        {% for x in new_members_list %}
+            <tr><td>{{x.name}}</td>
+                <td>{{x.gender}}</td>
+                <td><input type ="radio" name="newgl" class="blahblah" value = "{{x.id}}"/></td>
+            </tr>
+        {% endfor %}
+    </table>
+    
+    <input type="submit" value="Confirm"/>
+    </form>
+
+    <a href="http://www.bits-bosm.org/2015/regsoft/firewallz/"> Go to Home </a>
+
+    </div>
+    <style>
+.tim{
+	text-align:center;
+	margin-left:30%;
+    margin-right:30%;
+	margin-top:60px;
+}
+table
+{
+    font-family: agency fb;
+    text-align: center;
+    border:1px solid black;
+    font-size:1em;
+    border-radius: 7px;
+}
+th
+{
+    width: 12%;
+    color:white;
+    background:#7E8F7C;
+}
+td
+{
+    padding-left: 25px;
+    padding-right: 20px;
+}
+tr:nth-child(even)
+{
+    background: #DFE2DB;
+}
+tr:nth-child(odd)
+{
+    background: #FDF3E7;
+}
+</style>
+
+
+</body>
+</html>

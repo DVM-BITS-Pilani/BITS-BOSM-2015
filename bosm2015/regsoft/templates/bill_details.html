@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+table
+{
+    font-family: arial;
+    text-align: center;
+    border:1px solid black;
+}
+th
+{
+    width: 100px;
+    color:white;
+    background:#226;
+}
+td
+{
+    padding-left: 25px;
+    padding-right: 20px;
+}
+tr:nth-child(even)
+{
+    background: #eee;
+}
+    </style>
+    <title></title>
+</head>
+
+<body>
+<p align="right"> Developed @ Department of Visual Media, BITS Pilani </p><br>
+
+<center>
+    <h2> Bill Details</h2>
+	<table>
+			{% for x in all_parts %}
+		<tr><th>Name</th><th>Gender</th><th>Phone Number</th>
+		</tr>
+		<tr>
+                <td>{{x.0}}</td>
+				<td>{{x.1}}</td>
+                <td>{{x.2}}</td>
+				
+            </tr>
+        {% endfor %}
+    </table>
+    <a href ="http://bits-bosm.org/2015/regsoft/controlz/receipt/">Go to home</a>
+	</center>
+</body>
+</html>

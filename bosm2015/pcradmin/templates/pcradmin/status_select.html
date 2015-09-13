@@ -1,0 +1,49 @@
+{% extends "pcradmin/base.html" %}
+{% block body %}
+<div>
+    <div class="row">
+        <div class="twelve columns textcenter">
+            <h1>Set User Status</h1>
+            <a href="{% url 'pcradmin:dashboard' %}" class="button button-primary">Dashboard</a>
+            <form action= "../set/" method = "POST">
+                {% csrf_token %}            
+            <table class= "u-full-width">
+            <tbody>
+                <tr>
+                    <th>Status</th>
+                    <th>Name</th>
+                    <th>College</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Select</th>
+                </tr>
+            </tbody>
+            <tbody>
+            {% for p in users reversed %}
+            <tr>
+                {% if p.is_active %}
+                    <th style="color: green">Active</th>
+                    
+                {% else %}
+                    <th style="color: red">Inactive</th>
+                    
+                {% endif %}
+                <td>{% for u in p.userprofile_set.all %}{{u}}{% endfor %}</td>
+                <td>{% for u in p.userprofile_set.all %}{{u.college}}{% endfor %}</td>
+                <td>{{p.username}}</td>
+                <td>{{p.email}}</td>
+                <td>{% for u in p.userprofile_set.all %}{{u.phone}}{% endfor %}</td>
+                <!-- <td><input type="radio" name="username" value= {{p.username}} /></td> -->
+                <td><button type= 'submit' class="button button-primary" name='username' value={{p.username}}  >Select</button> </td>        
+            </tr>
+            {% endfor %}
+            </tbody>
+    </table>
+    
+    <!-- <button type="submit">set status</button> -->
+</form>
+        </div>
+    </div>
+</div>
+{% endblock body %}

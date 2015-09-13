@@ -1,0 +1,83 @@
+<!DOCTYPE Html>
+<html>
+<head>
+    <style type="text/css">
+            @page {
+            size: a4;
+            #header {
+                display: table-header-group;
+            }
+            #main {
+                display: table-row-group;
+            }
+            #footer {
+                display: table-footer-group;
+            }
+    </style>
+    <style type="text/css">
+        @media all {
+            table {
+                margin: auto;
+                font-family: arial;
+                font-size: 14px; 
+                border: 3px solid #000;
+                height: 65%;
+                table-layout: fixed;
+                position: absolute;
+                top: 0px;
+                width: 90%;
+                left: 5%;
+            }
+            td,
+            th {
+                text-align: center;
+        border: 1px solid black;
+                padding-top: 5px;
+        width:25%
+            }
+        }
+    </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body style="background:url(http://bits-bosm.org/pcrpdf.jpg); background-size:100% 100%;background-repeat: no-repeat;height:1300px">
+    <div id="main" style="font-size:20px;width:100%;height:65%;padding:20px;position:absolute;top:240px;">
+
+
+        <div id="contentWrapper">
+
+            <table>
+        <tr>
+            <th>Name</th>
+            <th>Event</th>
+        <th>Name</th>
+      <th>Event</th>
+        </tr>
+        
+        {% for p in plist_tab1 %}
+            <tr>
+        
+                <td>{{p.0.0}}</td>
+                <td>{{p.0.1}}</td>
+                <td>{{p.1.0}}</td>
+                <td>{{p.1.1}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+            
+        </div>
+
+    </div>
+        <!-- need to improve messy stuff here -->
+
+    <!-- <div id="footer">
+        <img src="/home/gauss/footer1.jpg">
+    </div> -->
+    <div id="barcode" style="position:absolute; bottom:250px; left:0;right:0;margin:auto;">
+    <center><img src="http://bits-bosm.org/taruntest/satwik_bosmcode/{{barcode_name}}" align="middle"></center>
+        <center>{{encoded}}</center>
+    </div>
+
+</body>
+</html>
+

@@ -1,0 +1,100 @@
+<div id="divneo" class="divneo" >
+    <div class="statHead">EDIT THE PARTICIPANT DETAILS!</div>
+    <form id="editParticipantForm" class="editParticipantForm" >
+        <input id="participant_id" name="participant_id" hidden value="{{ participant.id }}">
+        <table id="editParticipantTable" class="editParticipantTable">
+            <tr>
+                <td class="editParticipantTd">
+                    Participant Name : <br>
+                    <div id="entry_block" style="width:100%;font-weight: normal;"><input type="text" name="name" id="e_name" style="width:270px" class="inp_neo" value="{{ participant.name }}"></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="editParticipantTd">
+                    Phone No : <br>
+                    <div id="entry_block" style="width:100%"><input type="text" name="contact" id="e_contact" style="margin-bottom:3px;width:300px" class="inp_neo" value="{{ participant.phone }}"></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="editParticipantTd">
+                    Email ID : <br>
+                    <div id="entry_block" style="width:100%"><input type="text" name="email" id="e_email" style="width:300px" class="inp_neo" value="{{ participant.email_id }}"></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="editParticipantTd">
+                    Gender : <br>
+                    {% ifequal participant.gender "male"  %}
+                    <div style="margin : 5px"><input type="radio" id="e_gender" name="gender" value="male" checked>&nbsp;&nbsp;&nbsp;&nbsp;Male&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="e_gender" name="gender" value="female">&nbsp;&nbsp;&nbsp;&nbsp;Female</div>
+                    {% else %}
+                    <div style="margin : 5px"><input type="radio" id="e_gender" name="gender" value="male">&nbsp;&nbsp;&nbsp;&nbsp;Male&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="e_gender" name="gender" value="female" checked>&nbsp;&nbsp;&nbsp;&nbsp;Female</div>
+                    {% endifequal %}
+                    
+
+                </td>
+            </tr>
+            <tr>
+                <td class="editParticipantTd">
+                    Events : <br>
+                    <span style="color: red; font-weight: bold">PLEASE RESELECT ALL THE EVENTS AGAIN </span></br>
+                 
+                    {% for c in category_name_list %}
+                    <br>{{c}}<br><br>
+                    {% for z in event_list %}
+                    {% if z.category.name == c %}
+                    <input type="checkbox" name="eventList" value="{{z.id}}"><span style="font-weight: normal;">{{z.name}}</span><br>
+                    {% endif %}
+                    {% endfor %}
+                    {% endfor %}
+                   
+                </td>
+            </tr>
+        </table>
+    </form>
+    <button id="editParticipantSubmit">Submit</button>
+</div>
+
+<script>
+	$("#editParticipantSubmit").click(function(e) {
+		var error = "";
+        e.preventDefault();
+
+        var phoVal = $('#e_contact').val();
+        var phoReg = /^([0-9]{10})$/;
+        var phoTest = phoReg.test(phoVal);
+
+        var emaVal = $('#e_email').val();
+        var emaReg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+        var emaTest = emaReg.test(emaVal);
+
+        var namVal = $("#e_name").val();
+        var genVal = $("#e_gender:checked").val();
+        
+        var empty = (namVal == "")||(genVal == undefined)||(emaVal == "");
+
+        console.log(genVal);
+        if(phoTest&&emaTest&&!(empty)) {    
+            $.ajax({
+            url : '/2014test/editparticipantcommit/',
+            type : "POST",
+            data : $("#editParticipantForm").serialize(),
+            success : function() {
+                closeLightbox(1);
+                $(".blackoutContentWrapper").css("display","none");
+                refreshList();
+            }
+        });
+        }
+        else {
+            if(!phoVal) 
+                error = "Please enter 10 digit Mobile number without +91 or 0 prefix."
+            if(!emaTest)
+                error = error + "\nPlease enter a valid email ID."
+            if(empty)
+                error = error + "\nPlease fill all the information."
+            alert(error);
+        }      
+	});
+
+
+</script>

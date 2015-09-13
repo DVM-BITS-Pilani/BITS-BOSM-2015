@@ -1,0 +1,32 @@
+{% extends "pcradmin/base.html" %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="twelve columns textcenter">
+            <h1>Set User Status</h1>
+            <br><a class="button" href="./dashboard">dashboard</a>
+            <form action="./showstatus" method= POST >
+            	{% csrf_token %}
+                <table class="u-full-width">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Active</th>
+                            <th>Inactive</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{uname}}</td>
+                            <td><input type ='radio' name = 'status' value = '1'></td>
+                            <td><input type = 'radio' name = 'status' value = '0'></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="hidden" name='uname' value = {{uname}} >
+                <button type= "submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock body %}

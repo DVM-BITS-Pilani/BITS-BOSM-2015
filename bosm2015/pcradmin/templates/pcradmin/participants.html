@@ -1,0 +1,100 @@
+{% extends "pcradmin/base.html" %}
+{% block body %}
+
+<script type= 'text/javascript'>
+function checkall(gauss){
+  var cbx = document.getElementsByTagName('input');
+  for(var i=0; i< cbx.length ; ++i)
+  {
+    if(cbx[i].type == 'checkbox')
+      cbx[i].checked = gauss.checked;
+
+  }
+}
+
+</script>
+
+<div class="container">
+    <div class="row">
+        <div class="twelve columns textcenter">
+            <h2>Participant List for {{uname}}</h2>
+            <br>
+            
+                      <a class="button" href="{% url 'pcradmin:dashboard' %}">DashBoard</a> &nbsp;
+                      
+                      <form action="../participantlist/" method = 'POST' id= 'form3'>
+                        {% csrf_token %}
+                      <button type= 'submit' name='uname' value ={{uname}} form= 'form3'> Back</button> &nbsp;
+
+                      </form>
+            <table class="u-full-width">
+                  {% if plist %}
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>S.No</th>
+                      <th>Name</th>
+                      <th>Sex</th>
+                      <th>Events</th>
+                      <th>Phone</th>
+                      <th>Email</th>
+                      <th>Confirmation</th>
+                      <th> Select All<input type= 'checkbox' name= 'selectall' onclick= "checkall(this)"></th>
+
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <form action="../pedit" method = 'POST' id= 'form1'>
+                        {% csrf_token %}
+                      <button type= 'submit' name='edit' value ='2' form= 'form1'> Edit</button>
+                      </form>
+                      <form action="../pconfirm/" method = 'POST' id= 'form2'>
+                        {% csrf_token %}
+
+                        <input type = 'hidden' name='uname' value = {{uname}} >
+
+
+                  {% for member in plist %} 
+                    <tr>
+                      <td> <input type = 'radio' name='pid' value = {{member.id}} form= 'form1' required /></td>
+                      <td>{{forloop.counter}}</td>
+                      <td>{{member.name}}</td>
+                      <td>{{member.gender}}</td>
+                      <td>{% for event in member.events.all %}{{event}}  {% endfor %}</td>
+                      <td>{{member.phone}}</td>
+                      <td>{{member.email_id}}</td>
+                      {% if member.confirmation %}
+                        <td style="color: green">Yes</td>
+                    
+                      {% else %}
+                        <td style="color: red">No</td>
+                    
+                {% endif %}
+                
+
+                      <td> <input type = 'checkbox' name={{member.id}} value = {{member}} form='form2'></td>
+                     
+                      
+
+                      
+                    </tr>      
+                  {% endfor %}
+                
+                  <br><input class="button button-primary" type= 'submit' name ='key' value='confirm' form='form2'> &nbsp;&nbsp;
+                  <input class="button button-primary" type= 'submit' name = 'key' value='unconfirm' form='form2'> 
+
+                
+                </form>
+                  {% else %}
+                  <thead>
+                    <tr>
+                      <td>No participant found</td>
+                    </tr>
+                  </thead>
+                  {% endif %}
+                </table>
+        </div>
+    </div>
+</div>
+{% endblock body %}

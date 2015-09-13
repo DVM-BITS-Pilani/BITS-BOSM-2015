@@ -1,0 +1,52 @@
+{% extends 'pcradmin/base.html' %}
+{% block title %}
+    BOSM 2015 | Register
+{% endblock title %}
+{% block head %}
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock head %}
+{% block body %}
+<div class="container">
+    <style type="text/css">
+        @media (max-width:500px){
+            .g-recaptcha{
+                    left:5%;
+                }
+            } 
+            @media (min-width:500px){
+                .g-recaptcha{
+                    left:35%;
+                    width: 30%;
+                }
+            } 
+            .g-recaptcha{
+                position:relative
+            }
+    </style>
+    <div class="row">
+        <div class="twelve columns textcenter">
+        <h1>Register for BOSM 2015</h1>
+
+        {% if registered %}
+        <strong>Thank you for registering!</strong><br>
+        Please check your email for further instructions <br>
+        <a href="{% url 'registration:login' %}"><button>Back Home</button></a><br>        
+        {% else %}
+        <form id="user_form" method="post" action="." enctype="multipart/form-data" onsubmit="submitfake.value='Registering... Please Wait'; submitfake.disabled=true;">
+            <p>All fields are mandatory</p>
+
+            {% csrf_token %}
+            {{ user_form.as_table }}
+            {{ profile_form.as_table }}
+            <br>
+            <input type="hidden" name="submit" value="Register">
+
+            <input class="button button-primary" type="submit" name="submitfake" value="Register"/>
+            </div>
+        </form>
+        {% endif %}            
+        </div>
+    </div>
+</div>
+    
+{% endblock body %}

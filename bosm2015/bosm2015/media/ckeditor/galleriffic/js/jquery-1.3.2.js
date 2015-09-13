@@ -1,0 +1,1 @@
+/home/dvm/bosm/newdjango/local/lib/python2.7/site-packages/ckeditor/static/ckeditor/galleriffic/js/jquery-1.3.2.js

@@ -1,0 +1,51 @@
+{% extends "pcradmin/base.html" %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="twelve columns textcenter">
+            <h1>User List</h1>
+            
+            <table class= "u-full-width">
+            <tbody>
+                {% if result %}
+                <tr>
+                    
+                    <th>Name</th>
+                    <th>College</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Phone </th>
+                    <th></th>
+                    
+                    <form action="../participantlist/" method= POST >
+                {% csrf_token %}
+                </tr>
+            </tbody>
+            {% for p in result %}
+            <tbody>
+            <tr>
+                              
+                <td>{{p.firstname}} {{p.lastname}}</td>
+                <td>{{p.college}}</td>
+                <td>{{p.user.username}}</td>  
+                <td>{{p.user.email}}</td>  
+                <td>{{p.phone}} </td>  
+                <td><button type= 'submit' class="button button-primary" name='uname' value={{p.username}}  >Select</button> </td>    
+                        
+            </tr>
+            </tbody>
+            {% endfor %}
+
+            
+    </table>
+    
+            <br><a class="button" href="../listuser">Back</a>
+</form>
+            {% else %}
+            <strong> No user found </strong>
+            <br><a class="button" href="../listuser">Back</a>
+            {% endif %}    
+        </div>
+    </div>
+</div>
+{% endblock body %}

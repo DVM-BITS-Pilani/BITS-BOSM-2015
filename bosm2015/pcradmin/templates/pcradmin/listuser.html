@@ -1,0 +1,50 @@
+{% extends "pcradmin/base.html" %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="twelve columns textcenter">
+            <h1>User List</h1>
+            <br><a class="button" href="{% url 'pcradmin:dashboard' %}">DASHBOARD</a>
+            <form action="../users/" method = 'POST'>
+                {% csrf_token %}
+                   <input type = 'text' name= 'query' value = ''>
+                   <button type= 'submit' > Search</button>
+            </form>
+                      
+            <table class= "u-full-width">
+            <tbody>
+                <tr>
+                    <th>Sr No.</th>
+                    <th>Name</th>
+                    <th>College</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th></th>
+                    
+                    <form action="../participantlist/" method= POST >
+                {% csrf_token %}
+                </tr>
+            </tbody>
+            {% for p in user reversed %}
+            <tbody>
+            <tr>
+                <td>{{forloop.counter}}
+                <td>{% for u in p.userprofile_set.all %}{{u}}{% endfor %}</td>
+                <td>{% for u in p.userprofile_set.all %}{{u.college}}{% endfor %}</td>
+                <td>{{p.username}}</td>  
+                <td>{{p.email}}</td>    
+                <!-- <td><input type="radio" name='uname' value={{p.username}}></td> -->    
+                <td><button type= 'submit' class="button button-primary" name='uname' value={{p.username}}  >Select</button> </td>
+                        
+            </tr>
+            </tbody>
+            {% endfor %}
+            
+    </table>
+</form>
+    
+    
+        </div>
+    </div>
+</div>
+{% endblock body %}

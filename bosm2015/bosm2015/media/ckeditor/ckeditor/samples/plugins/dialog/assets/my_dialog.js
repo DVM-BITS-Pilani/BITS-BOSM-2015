@@ -1,0 +1,1 @@
+/home/dvm/bosm/newdjango/local/lib/python2.7/site-packages/ckeditor/static/ckeditor/ckeditor/samples/plugins/dialog/assets/my_dialog.js

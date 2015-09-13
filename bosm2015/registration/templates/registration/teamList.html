@@ -1,0 +1,66 @@
+<h3 style="color: #0066ce;margin:0px;">LIST OF PARTICIPANTS CURRENTLY ADDED : </h3>
+<span style="font-style:italic;font-size:13px">(Click on the Participant name to expand.)</span>
+<br><br>
+<div id="accordion">
+{% for x in participant_with_events %}
+    {% if x.0.coach %}
+    <h3 id="part_name" >{{ forloop.counter }}. {{ x.0.name }} (Coach)</h3>
+    {% else %}
+    <h3 id="part_name" >{{ forloop.counter }}. {{ x.0.name }}</h3>
+    {% endif %}
+    <div id="part_add_info{{ forloop.counter }}" style="margin-bottom: 10px;padding-bottom: 20px;height: auto;">
+        <div class="add_info">
+            <table class="add_info_tb" style=" font-size: 14px;color: 333;">
+                <tr class="info_r"><td class="info_sgmnt">EMAIL  : {{ x.0.email_id }}</td></tr>
+                <tr class="info_r"><td class="info_sgmnt">PHONE  : +91 {{ x.0.phone }}</td></tr>
+                <tr class="info_r"><td class="info_sgmnt">GENDER : {{ x.0.gender }}</td></tr>
+                <tr class="info_r"><td class="info_sgmnt">EVENTS : {{ x.1 }}</td></tr>
+            </table>
+        </div>
+        <div class="switch_box">
+            <div class="box_wrapper">
+                <div id="edt{{ x.0.id }}" class="edtButton identity_nav">edit</div>
+                <div id="del{{ x.0.id }}" class="delButton identity_nav">del</div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</div>
+
+<script>
+    $(".edtButton").click(function() {
+        var no = $(this).attr("id").substring(3);
+        var data = { participant_id : no};
+        $.ajax({
+            url : '/2014/editparticipant/',
+            type : "POST",
+            data : $.param(data),
+            success : function(data) {
+                $("#editParticipantWrapper").html(data);
+                $(".blackoutContentWrapper").css("display","none");
+                $("#editParticipantWrapper").css("display","block");
+                openLightbox();
+            }
+
+        });
+    });
+
+    $(".delButton").click(function() {
+        var no = $(this).attr("id").substring(3);
+        var data = { participant_id : no};
+        $.ajax({
+            url : '/2014/delparticipant/',
+            type : "POST",
+            data : $.param(data),
+            success : function() {
+                refreshList();
+            }
+
+        })
+    });
+
+    $(function() {
+        $( "#accordion" ).accordion({ collapsible: true , active : false , heightStyle: "content"});
+    });
+
+</script>

@@ -1,0 +1,32 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>
+  {% block title %}
+      PCR Admin
+  {% endblock title %}      
+  </title>
+  <meta name="description" content="">
+  <meta name="author" content="Nikhil Verma">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'pcradmin/css/skeleton.css' %}">
+  <link rel="icon" type="image/png" href="{% static 'pcradmin/images/favicon.ico' %}">
+
+</head>
+<body>
+{% block body %}
+    
+{% endblock body %}
+  <div class="container">
+    <div class="row">
+      <div class="twelve columns">
+        <footer id="footer" class="textcenter">
+          Developed at DVM, BITS Pilani
+        </footer>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<head>
+  <style type="text/css">
+    @page {
+      size: a4;
+    @frame {
+      -pdf-frame-content: "footer";
+      top: 25.0cm;
+      margin-right: 0cm;
+      margin-left: 0cm;
+    }
+    @frame {
+      -pdf-frame-content: 'header';
+      margin-right: 0cm;
+      margin-left: 0cm;
+    }  
+    @frame {
+      -pdf-frame-content: "content";
+      top: 4.8cm;
+      margin-right: 0cm;
+      margin-left: 0cm;              }
+    @frame {
+      -pdf-frame-content: "contentWrapper";
+      top: 6cm;
+      margin-right: 1cm;
+      margin-left: 1cm;              }  
+      }    
+  </style>
+  <style type="text/css">
+    @media all
+    {
+      table
+      {
+        margin: auto;
+        font-size: 10px; 
+        font-family: arial;
+        border: 1px solid black;
+      }
+      td,th
+      {
+        text-align: center;
+        padding-top: 5px;
+      }
+    }
+  </style>
+  <meta http-equiv="Content-Type" conten t="text/html; charset=UTF-8">
+</head>
+<div id="header">
+  <img src="http://bits-oasis.org/letterheader.jpg">
+</div>
+
+<div id="content" style="font-size : 20px;">
+
+<div id="contentWrapper">
+
+
+
+
+  <table>
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Events</th>
+
+        </tr>
+
+        {% for p in display_page_participants %}
+            <tr>
+        
+                <td>{{p.0}}</td>
+                <td>{{p.1}}</td>
+                <td>{{p.2}}</td>
+
+            </tr>
+        {% endfor %}
+
+  </table>
+    <br>
+
+
+
+
+
+    </div>
+    </div>
+<!-- need to improve messy stuff here -->
+<div id="footer">
+</div>

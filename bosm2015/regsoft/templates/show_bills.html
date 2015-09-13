@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+table
+{
+    font-family: arial;
+    text-align: center;
+    border:1px solid black;
+}
+th
+{
+    width: 100px;
+    color:white;
+    background:#226;
+}
+td
+{
+    padding-left: 25px;
+    padding-right: 20px;
+}
+tr:nth-child(even)
+{
+    background: #eee;
+}
+    </style>
+    <title></title>
+</head>
+
+<body>
+<p align="right"> Developed @ Department of Visual Media, BITS Pilani </p><br>
+<center>
+    <table>
+        <tr>
+            <th>Bill number</th>
+            <th>College</th>
+            <th>Name of the group leader</th>
+			<th>Details</th>
+        </tr>
+        {% for x in all_bills %}
+            <tr>
+                <td>{{x.0}}</td>
+                <td>{{x.1}}</td>
+                <td>{{x.2}}</td>
+				<td><a href="http://bits-bosm.org/2015/regsoft/bill_detail/{{x.0}}">Details</a></td> 
+            </tr>
+        {% endfor %}
+    </table>
+    </center>
+</body>
+</html>

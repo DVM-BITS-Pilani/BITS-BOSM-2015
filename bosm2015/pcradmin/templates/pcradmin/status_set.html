@@ -1,0 +1,38 @@
+{% extends "pcradmin/base.html" %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="twelve columns textcenter">
+            <h1>Set User Status</h1>
+            <a href="{% url 'pcradmin:dashboard' %}" class="button button-primary">Dashboard</a>
+            <form action="../save/" method= 'POST'>
+            	{% csrf_token %}
+                <table class="u-full-width">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Active</th>
+                            <th>Inactive</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{uname}}</td> 
+                            {% if stat %}
+                                <td><input type ='radio' name = 'status' value = '1' checked= "checked"></td>
+                                <td><input type = 'radio' name = 'status' value = '0'></td>
+                            {% else %}
+                                <td><input type ='radio' name = 'status' value = '1' ></td>
+                                <td><input type = 'radio' name = 'status' value = '0' checked= "checked"></td>
+                            {% endif %}
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="hidden" name='uname' value = {{uname}} >
+                <input type= "hidden" name='email' value= {{email}}>
+                <button type= "submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock body %}

@@ -1,0 +1,75 @@
+{% extends "registration/base.html" %}
+{% block title %}
+    BOSM 2015 | Add Members
+{% endblock title %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="twelve columns" id="participants">
+                <h4>MEMBERS</h4>
+            </div>
+            <div class="errorlist textcenter">
+              <ul>
+                {% for item in error %}
+                  <li>{{item}}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="twelve colummns">
+                <h5>ADD NEW</h5>
+                <form action="." method="POST" onsubmit="addfake.value='Adding...'; addfake.disabled=true;">
+                <div class="row">
+                  <div class="twelve columns">
+                    <label for="type">Member Type</label>
+                    <div class="two columns" style="margin-left: 0%;">
+                    <label><input type="radio" name="coach" id="type" value="False" checked>Participant</label>
+                    </div>
+                    <div class="two columns" style="margin-left: 0%;">
+                    <label><input type="radio" name="coach" id="type" value="True">Coach</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="four columns">
+                    <label for="name">Name</label>
+                    <input class="u-full-width" type="text" id="name" name="name" required>
+                  </div>
+                  <div class="two columns">
+                    <label for="sex">Sex</label>
+                    <select class="u-full-width" id="sex" name="sex" required>
+                      <option value="">Select</option>
+                      <option value="M">Male</option>
+                      <option value="F">Female</option>
+                    </select>
+                  </div>
+                  <div class="three columns">
+                    <label for="phone">Phone</label>
+                    <input class="u-full-width" type="number" id="phone" placeholder="9999999999" name="phone" required>
+                  </div> 
+                  <div class="three columns">
+                    <label for="email">Email</label>
+                    <input class="u-full-width" type="text" id="email" placeholder="you@example.com" name="email">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="twelve columns">
+                  <label>Events</label>
+                    {% for event in events %}
+                    <div class="three columns" style="margin-left: 0%;">                    
+                      <label><input type="checkbox" name="events" value="{{event.id}}">{{event}}</label>
+                    </div>                    
+                    {% endfor %}
+                  </div>
+                </div>
+                <div class="row">                             
+                  <div class="twelve columns right">
+                    {% csrf_token %}
+                    <input type="hidden" name="add" value="add">
+                    <input class="button-primary" type="submit" name="addfake" value="add"><br><br>
+                  </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

@@ -1,0 +1,319 @@
+<html>
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,800,700,400,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="/loginPortalAssets/css/loginPortalStyle.css">
+    <title>College Profile | OASIS 2014 | That 90s Show</title>
+</head>
+
+<body>
+	<div id="blackout" class="blackout">
+	    <div id="closeBox" class="closeBox">CLOSE</div>
+	    <div id="blackoutContent" class="blackoutContent">
+	    	<div id="addParticipantWrapper" class="addParticipantWrapper blackoutContentWrapper">
+			    <div id="divneo" class="divneo" >
+			        <div class="statHead">ADD A NEW PARTICIPANT !</div>
+			        <form id="addParticipantForm" class="addParticipantForm" >
+                        <input id="glid" name="gl_id" hidden value="{{gl_profile.id}}">
+			            <table id="addParticipantTable" class="addParticipantTable">
+			                <tr>
+			                    <td class="addParticipantTd">
+			                        Participant Name : <br>
+			                        <div id="entry_block" style="width:100%;font-weight: normal;"><input type="text" name="name" id="a_name" style="width:270px" class="inp_neo"></div>
+			                    </td>
+			                </tr>
+			                <tr>
+			                    <td class="addParticipantTd">
+			                        Phone No : <br>
+			                        <div id="entry_block" style="width:100%"><input type="text" name="contact" id="a_contact" style="margin-bottom:3px;width:300px" class="inp_neo"></div>
+			                    </td>
+			                </tr>
+			                <tr>
+			                    <td class="addParticipantTd">
+			                        Email ID : <br>
+			                        <div id="entry_block" style="width:100%"><input type="text" name="email" id="a_email" style="width:300px" class="inp_neo"></div>
+			                    </td>
+			                </tr>
+			                <tr>
+			                    <td class="addParticipantTd">
+			                        Gender : <br>
+			                        <div style="margin : 5px"><input type="radio" id="a_gender" name="gender" value="male">&nbsp;&nbsp;&nbsp;&nbsp;Male&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="a_gender" name="gender" value="female">&nbsp;&nbsp;&nbsp;&nbsp;Female</div>
+			                    </td>
+			                </tr>
+                            <tr>
+                                <td class="addParticipantTd">
+                                    Events : <br>
+                                        {% for c in category_name_list %}
+                                        <br>{{c}}<br><br>
+                                        {% for z in event_list %}{% if z.category.name == c %}<input type="checkbox" id="eventList" name="eventList" value="{{z.id}}"><span style="font-weight: normal;">{{z.name}}</span><br>
+                                        {% endif %}{% endfor %}{% endfor %}
+                                </td>
+                            </tr>
+			            </table>
+			        </form>
+			        <button id="newParticipantSubmit">Submit</button>
+			    </div>
+			</div>
+
+            <div id="addCoachWrapper" class="addParticipantWrapper blackoutContentWrapper">
+                <div id="divneo" class="divneo" >
+                    <div class="statHead">ADD A NEW COACH !</div>
+                    <form id="addCoachForm" class="addParticipantForm" >
+                        <input id="glid" name="gl_id" hidden value="{{gl_profile.id}}">
+                        <table id="addParticipantTable" class="addParticipantTable">
+                            <tr>
+                                <td class="addParticipantTd">
+                                    Coach Name : <br>
+                                    <div id="entry_block" style="width:100%;font-weight: normal;"><input type="text" name="name" id="c_name" style="width:270px" class="inp_neo"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="addParticipantTd">
+                                    Phone No : <br>
+                                    <div id="entry_block" style="width:100%"><input type="text" name="contact" id="c_contact" style="margin-bottom:3px;width:300px" class="inp_neo"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="addParticipantTd">
+                                    Email ID : <br>
+                                    <div id="entry_block" style="width:100%"><input type="text" name="email" id="c_email" style="width:300px" class="inp_neo"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="addParticipantTd">
+                                    Gender : <br>
+                                    <div style="margin : 5px"><input type="radio" id="c_gender" name="gender" value="male">&nbsp;&nbsp;&nbsp;&nbsp;Male&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="c_gender" name="gender" value="female">&nbsp;&nbsp;&nbsp;&nbsp;Female</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                    <button id="newCoachSubmit">Submit</button>
+                </div>
+            </div>
+
+			<div id="editParticipantWrapper" class="editParticipantWrapper blackoutContentWrapper"></div>
+
+            <div id="editSunburnWrapper" class="addParticipantWrapper blackoutContentWrapper">
+                <div id="divneo" class="divneo" >
+                    <div class="statHead">EDIT SUNBURN TICKETS !</div>
+                    <form id="addSunburnForm" class="addParticipantForm" >
+                        <input id="glid" name="gl_id" hidden value="{{gl_profile.id}}">
+                        <table id="addParticipantTable" class="addParticipantTable">
+                            <tr>
+                                <td class="addParticipantTd">
+                                    No. of Sunburn Tickets : <br>
+                                    <div id="entry_block" style="width:100%"><input type="text" name="sticket" id="sticket" style="margin-bottom:3px;width:300px" class="inp_neo"></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                    <button id="newSunburnSubmit">Submit</button>
+                </div>
+            </div>
+
+
+	    </div>
+	</div>
+
+
+
+    <div id="header">
+        <div id="icon"><img src="/loginPortalAssets/img/iconOasis.png" class="img_icon"></div>
+        <div id="title"> OASIS 2014 <br>REGISTRATION PORTAL</div>        
+        <a id="logout" href="/2014test/logout/"><img src="/loginPortalAssets/img/power.png" style="height:40px;padding-right:5px;margin-bottom:-13px">LOGOUT</a>
+    </div>
+
+
+	<div id="info">
+		<div id="infoLeaderWrapper">GROUP LEADER <div class="info_content" id="gl">{{ gl_profile.name }}</div></div>
+		<div id="infoCollegeWrapper">COLLEGE <div class="info_content" id="col">{{ gl_profile.college }}</div></div>
+		<div id="infoLeaderWrapper">CITY <div class="info_content" id="gl">{{ gl_profile.city }}</div></div>
+        <div id="sunburnWrapper">NO. OF SUNBURN TICKETS SIGNED<div class="info_content" id="sb">{{gl_profile.stickets}}</div><div class="sunburnEdit" id="sbe">Click to Edit Sunburn Tickets</div></div> 
+	</div>
+    <!--Add {{gl_profile.stickets}}-->
+
+
+
+	<button id="addParticipant" >ADD PARTICIPANT</button>
+    <button id="addCoach" >ADD COACH</button>
+
+	<div id="participantListWrapper"></div>
+</body>
+
+<script>
+	
+function openLightbox() {
+    $('#blackout').fadeIn();
+    $('#blackoutContent').delay(400).fadeIn();
+}
+
+function closeLightbox(yes) {
+    if (yes == 1)
+        $('#blackout').fadeOut();
+    $('.blackoutContent').fadeOut();
+}
+
+function refreshList() {
+	$.ajax({
+        url : '/2014test/teamlist/',
+        success : function(data) {
+            $("#participantListWrapper").html(data);
+        }
+    });
+}
+
+
+$(window).load(function() {
+    var sunburn=0;
+   // $('#sb').html(sunburn);//Remove this line
+
+    $("#sbe").click(function() {
+        $(".blackoutContentWrapper").css("display","none");
+        $("#editSunburnWrapper").css("display","block");
+        openLightbox();
+    });
+
+    $("#addCoach").click(function() {
+        $(".blackoutContentWrapper").css("display","none");
+        $("#addCoachWrapper").css("display","block");
+        openLightbox();
+    });
+
+	$("#addParticipant").click(function() {
+        $(".blackoutContentWrapper").css("display","none");
+		$("#addParticipantWrapper").css("display","block");
+		openLightbox();
+	});
+
+	$('#closeBox').click(function() {
+        closeLightbox(1);
+    });
+
+    $('#newSunburnSubmit').click(function(e) {
+        var error = "";
+        e.preventDefault();
+
+        var tVal = $('#sticket').val();
+        var tReg = /^[0-9]*$/;
+        var tTest = tReg.test(tVal);
+
+        var empty = (tVal=="");
+
+        if(tTest&&!(empty)) {  
+            $.ajax({
+                url : '/2014test/sticket/',
+                type : "POST", 
+                data : $("#addSunburnForm").serialize(),
+                success : function(data) {
+					$("#sb").html(data);
+					
+        closeLightbox(1);
+        
+                }
+            });
+
+        }
+        else {
+            if(!tTest) 
+                error = "Only Numbers Allowed\n"
+            if(empty)
+                error = error + "Please fill all the information.\n"
+            alert(error);
+        }
+    });    
+
+    $('#newCoachSubmit').click(function(e) {
+        var error = "";
+        e.preventDefault();
+
+        var phoVal = $('#c_contact').val();
+        var phoReg = /^([0-9]{10})$/;
+        var phoTest = phoReg.test(phoVal);
+        var emaVal = $('#c_email').val();
+        var emaReg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+        var emaTest = emaReg.test(emaVal);
+        var namVal = $("#c_name").val();
+
+        var genVal = $("#c_gender:checked").val();
+        console.log(genVal);
+
+        var empty = (namVal == "")||(genVal == undefined)||(emaVal == "");
+
+        if(phoTest&&emaTest&&!(empty)) {  
+            $.ajax({
+                url : '/2014test/addcoach/',
+                type : "POST", 
+                data : $("#addCoachForm").serialize(),
+                success : function() {
+                    $("#addCoachtWrapper").css("display","none");
+                    closeLightbox(1);
+                    $('#addCoachForm').trigger("reset");
+                    refreshList();
+                }
+            });
+        }
+        else {
+            if(!phoTest) 
+                error = "Please enter 10 digit Mobile number without +91 or 0 prefix.\n"
+            if(!emaTest)
+                error = error + "Please enter a valid email ID.\n"
+            if(empty)
+                error = error + "Please fill all the information.\n"
+            alert(error);
+        }
+    });
+
+    $('#newParticipantSubmit').click(function(e) {
+        var error = "";
+        e.preventDefault();
+
+        var phoVal = $('#a_contact').val();
+        var phoReg = /^([0-9]{10})$/;
+        var phoTest = phoReg.test(phoVal);
+        var emaVal = $('#a_email').val();
+        var emaReg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+        var emaTest = emaReg.test(emaVal);
+
+        var namVal = $("#a_name").val();
+
+        var genVal = $("#a_gender:checked").val();
+        
+        var evtVal = $("#eventList:checked").val();
+
+        console.log(evtVal);
+
+        var empty = (namVal == "")||(genVal == undefined)||(emaVal == "");
+
+        if(phoTest&&emaTest&&!(empty)) {
+            console.log();    
+            $.ajax({
+                url : '/2014test/addparticipant/',
+                type : "POST", 
+                data : $("#addParticipantForm").serialize(),
+                success : function() {
+                    $("#addParticipantWrapper").css("display","none");
+                    closeLightbox(1);
+                    $('#addParticipantForm').trigger("reset");
+                    refreshList();
+                }
+            });
+        }
+        else {
+            if(!phoTest) 
+                error = "Please enter 10 digit Mobile number without +91 or 0 prefix.\n"
+            if(!emaTest)
+                error = error + "Please enter a valid email ID.\n"
+            if(empty)
+                error = error + "Please fill all the information.\n"
+            alert(error);
+        }
+    });
+
+    refreshList();
+
+});
+
+</script>
+
+<html>

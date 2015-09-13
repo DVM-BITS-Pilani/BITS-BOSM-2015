@@ -1,0 +1,82 @@
+{% extends "pcradmin/base.html" %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="twelve columns textcenter">
+            <h1> Statistics </h1>
+            <a href="#sportwise" class="button">Sportwise</a>
+            <a href="{% url 'pcradmin:dashboard' %}" class="button button-primary">Dashboard</a>
+            <a href="#collegewise" class="button">Collegewise</a><br>
+            <a href="{% url 'pcradmin:stats' %}" class="button button-primary">Stats Home</a>
+        </div>
+    </div>
+    {% if sportwise %}
+    <div class="row" id="sportwise">
+        <div class="twelve columns">
+            <h4>Sportwise Stats{% if name %} for {{ name }}{% endif %}</h4>
+            <p>Stats are of the form "Confirmed Participants | Registered Participants."</p>
+            <table class="u-full-width">
+                <thead>
+                    <tr>
+                        <th>Sport</th>
+                        <th>Males</th>
+                        <th>Females</th>
+                        <th>Coaches</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for event in sportwise %}
+                    <tr>
+                        <td><a class="button" href="{% url 'pcradmin:stats_event' event.id %}">{{ event.name }}</a></td>
+                        {# <td><strong>{{ event.name }}</strong></td> #}
+                        <td>{{ event.males }}</td>
+                        <td>{{ event.females }}</td>
+                        <td>{{ event.coaches }}</td>
+                        <td>{{ event.total }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <th>Total</th>
+                        <th>{{ total.males }}</th>
+                        <th>{{ total.females }}</th>
+                        <th>{{ total.coaches }}</th>
+                        <th>{{ total.total }}</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+    {% if collegewise %} 
+    <div class="row" id="collegewise">
+        <div class="twelve columns">
+            <h4>Collegewise Stats{% if name %} for {{ name }}{% endif %}</h4>
+            <p>Colleges with no registered participants are not listed here.</p>
+            <table class="u-full-width">
+                <thead>
+                    <tr>
+                        <th>College</th>
+                        <th>Males</th>
+                        <th>Females</th>
+                        <th>Coaches</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for college in collegewise %}
+                    <tr>
+                        <td><a class="button" href="{% url 'pcradmin:stats_college' college.userid %}">{{ college.college }}</a></td>
+                        <td>{{ college.males }}</td>
+                        <td>{{ college.females }}</td>
+                        <td>{{ college.coaches }}</td>
+                        <td>{{ college.total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock body %}

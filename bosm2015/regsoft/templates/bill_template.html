@@ -1,0 +1,111 @@
+<html>
+<head>
+<title>
+BOSM CONTROLZ|BILL TEMPLATE
+</title>
+</head>
+<body>
+<div style = "background-color: #3B3738; color: #D9853B; height:40px;font-size: 27px; text-align: center; width: 100%; margin: auto;box-shadow: 0px 0px 30px rgba(33,62,83,0.7)  inset;left:0;top:0; border-radius: 7px;font-family:agency fb;">EVENT REGISTRATION SYSTEM</div>
+<div style = "background: #558C89; color: #E9E581;height:37px;font-size: 24px; text-align: center; width: 100%; padding-top:5px;margin: auto; margin-top: 15px; box-shadow: 0px 0px 25px rgba(33,62,83,0.7) inset; border-radius: 7px;font-family:agency fb;">FIREWALLZ OUTER BOOTH</div><br>
+
+<div class= "tim">
+
+<form method="POST" action="http://www.bits-bosm.org/2015/regsoft/controlz/bill/{{gl_id}}/">
+<h2>Denominations</h2>
+<table>
+<tr>
+<th>Name of college</th> 
+<th>Number of participants getting billed</th> 
+<th>Amount per person</th> 
+<th>Total amount</th>
+
+</tr>
+<tr>
+<td>{{college}}</td>
+<td>{{number_of_participants}}</td>
+<td>{{register}}</td>
+<td>{{amount}}</td>
+
+</tr>
+</table>
+<table>
+        <tr>
+            <th>Participants that are getting billed</th>
+        </tr>
+        {% for p in display_table %}
+            <tr><td>{{p.name}}<input type = "hidden" name="left" id = "left" value="{{p.id}}"/> </td></tr>
+            
+        {% endfor %}
+		<tr><td>Demand Draft Number(Let it stay 'None' if method for payment is Cash)<input type = "text" name="dd" id = "dd" value="None"/></td>
+			</tr>	
+	</table>
+
+<p>Denominations</p>
+<table align="center">
+<tr><td> 1000 x</td><td><input onblur="findTotal()" type ="text" name="n_1000" id="n_1000" value=0 /></td></tr>
+<tr><td>500 x</td><td><input onblur="findTotal()" type ="text" name="n_500" id="n_500" value=0 /></td></tr>
+<tr><td>100 X</td><td><input onblur="findTotal()" type ="text" name="n_100" id="n_100" value=0 /></td></tr>
+<tr><td>50 X</td><td><input onblur="findTotal()" type ="text" name="n_50" id="n_50" value=0 /></td></tr>
+<tr><td>20 X</td><td><input onblur="findTotal()" type ="text" name="n_20" id="n_20" value=0 /></td></tr>
+<tr><td>10 X</td><td><input onblur="findTotal()" type ="text" name="n_10" id="n_10" value=0 /></td></tr>
+<tr><td>Total:</td><td><input type="text" name="total" id="total"/></td></tr>
+</table>
+
+<input type="submit" value="Generate Receipt"/>
+</form>
+<script type="text/javascript">
+function findTotal(){
+    var v1000 = document.getElementsByName('n_1000')[0].value;
+	var v500 = document.getElementsByName('n_500')[0].value;
+	var v100 = document.getElementsByName('n_100')[0].value;
+	var v50 = document.getElementsByName('n_50')[0].value;
+	var v20 = document.getElementsByName('n_20')[0].value;
+	var v10 = document.getElementsByName('n_10')[0].value;
+    var tot = ((parseInt(v1000))*1000) + ((parseInt(v500))*500) + ((parseInt(v100))*100) + ((parseInt(v50))*50) + ((parseInt(v20))*20) + ((parseInt(v10))*10);
+    
+    document.getElementsByName('total')[0].value = tot;
+}
+
+</script>
+ 
+
+</div>
+    <style>
+.tim{
+	text-align:center;
+	margin-left:30%;
+    margin-right:30%;
+	margin-top:60px;
+}
+table
+{
+    font-family: agency fb;
+    text-align: center;
+    border:1px solid black;
+    font-size:1em;
+    border-radius: 7px;
+}
+th
+{
+    width: 12%;
+    color:white;
+    background:#7E8F7C;
+}
+td
+{
+    padding-left: 25px;
+    padding-right: 20px;
+}
+tr:nth-child(even)
+{
+    background: #DFE2DB;
+}
+tr:nth-child(odd)
+{
+    background: #FDF3E7;
+}
+</style>
+
+
+</body>
+</html>

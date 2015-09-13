@@ -1,0 +1,27 @@
+{% extends "pcradmin/base.html" %}
+{% block body %}
+<h1 align = "center"> Send Mails to Group leaders</h1>
+	<table class="u-full-width">
+	<thead>
+		<tr>
+			<th>Name of the Group leader</th>
+			<th>Name of the College</th>
+			<th>Send Mail</th>
+		</tr>
+    </thead>
+	<tbody>	
+	<form action="../sendmail" method="POST">
+	{% csrf_token %}
+	{% for p in u_list %}
+		<tr>
+			<th>{{p.firstname}} {{p.lastname}}</th	>
+			<th>{{p.college}}</th>
+			<th><input type="radio" name="ema" value={{p.user.email}} /><input type="hidden" name="una" value={{p.user.username}} /><input type="hidden" name="fna" value={{p.firstname}} /><input type="hidden" name="lna" value={{p.lastname}} /></th>
+		</tr>
+	{% endfor %}
+	
+	</tbody>
+	</table>
+	<button type="submit" align="center">submit</button>
+	</form>
+{% endblock body %}

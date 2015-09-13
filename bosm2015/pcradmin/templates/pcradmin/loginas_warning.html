@@ -1,0 +1,23 @@
+{% extends "pcradmin/base.html" %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="twelve columns textcenter">
+            <h1>Caution</h1>
+            <h3>READ THE INSTRUCTIONS CAREFULLY</h3>
+            <div class="container">
+                
+            <h5 class="errorlist" style="text-align: left;">
+            <ol>
+                <li>You are about to login as a group leader, where you have the power to edit or delete participants individually. Any data loss due to mishandling cannot be recovered in any case.</li>
+                <li>Please ensure that the group leader is inactive before making any changes, so that he cannot make further changes after you.</li>
+                <li>You will have to login again as PCR once you log in as any of the group leaders. Enter your PCR credentials if prompted.</li>
+            </ol>
+            </h5>
+            </div>
+            <a style="background-color : red; color : white;" href="../select/" class="button ">I understand the risks</a>
+            <a href="{% url 'pcradmin:dashboard' %}" class="button button-primary">Dashboard</a>
+        </div>
+    </div>
+</div>
+{% endblock body %}

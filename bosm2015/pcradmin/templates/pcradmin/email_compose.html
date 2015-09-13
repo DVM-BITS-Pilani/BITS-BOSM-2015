@@ -1,0 +1,22 @@
+{% extends "pcradmin/base.html" %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="twelve columns textcenter">
+            <h1>Compose Mail</h1>
+            <a href="{% url 'pcradmin:dashboard' %}" class="button button-primary">Dashboard</a>
+            <form action = "../send/" method= "POST">
+            {% csrf_token %}
+            <label for="to">To:</label>
+            <input type="text" name="to" id="to" value="{{ to }}" style="width: 40%;" readonly>
+            <label for="subject">Subject:</label>
+            <input type="text" name="sub" id="sub" value="{{ subject }}" style="width: 40%;">
+            <label for="body">Body:</label>
+            <textarea name="body" id="body" cols="44">{{ body }}</textarea><br>
+            <span class="errorlist">Warning: Please send mails only when necessary. Our email may become blacklisted for spamming</span><br>   
+            <button type="submit" name="mailadd" value="{{ to }}">SEND</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock body %}

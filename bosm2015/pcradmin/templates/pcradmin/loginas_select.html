@@ -1,0 +1,39 @@
+{% extends "pcradmin/base.html" %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="twelve columns textcenter">
+            <h1>Select User</h1>
+            <a href="{% url 'pcradmin:dashboard' %}" class="button button-primary">Dashboard</a>
+            <form action = "../compose/" method= "POST">
+            
+            {% csrf_token %}
+            
+            <table class= "u-full-width">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>College</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Login</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                {% for user in users %}
+                <tr>
+                    <td>{% for userprofile in user.userprofile_set.all %}{{userprofile}}{% endfor %}</td>
+                    <td>{% for userprofile in user.userprofile_set.all %}{{userprofile.college}}{% endfor %}</td>
+                    <td>{{user.username}} </td>
+                    <td>{{user.email}}</td>
+                    <td><a href="../user/{{ user.id }}/" class="button button-primary">Login</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+        </table>
+        </form>
+        </div>
+    </div>
+</div>
+{% endblock body %}

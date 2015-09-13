@@ -1,0 +1,52 @@
+{% extends "registration/base.html" %}
+{% block title %}
+    BOSM 2015 | Members
+{% endblock title %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="twelve columns" id="participants">
+                <h4>PARTICIPANTS</h4>
+            </div>
+            <div class="twelve columns">
+                <h5>UPDATE EXISTING</h5>
+                <div class="twelve columns" id="participants">
+                    <table class="u-full-width">
+                      {% if participants %}
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Sex</th>
+                          <th>Sports</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for member in participants %}
+                        <tr>
+                          <td>{{member.name}}</td>
+                          <td>{{member.gender}}</td>
+                          <td>{% for event in member.events.all %}{{event}}  {% endfor %}</td>
+                          <form action="edit/" method="POST">
+                          {% csrf_token %}
+                            <input type="hidden" name="id" value="{{member.id}}">
+                            <td><input type="submit" name="edit" value="edit"></td>
+                            <td><input type="submit" name="delete" value="delete"></td>
+                          </form>
+                        </tr>      
+                      {% endfor %}
+                      </tbody>
+                      {% else %}
+                      <thead>
+                        <tr>
+                          <td>No participant registered</td>
+                        </tr>
+                      </thead>
+                      {% endif %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

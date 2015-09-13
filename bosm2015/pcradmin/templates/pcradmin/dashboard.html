@@ -1,0 +1,47 @@
+{% extends "pcradmin/base.html" %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="twelve columns textcenter">
+            <h1>Dashboard</h1>
+            <table class="u-full-width">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Click!</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Activate or Freeze User Accounts</td>
+                        <td><a class="button button-primary" href="../status/select/">Switch User Status</a></td>
+                    </tr>
+                    <tr>
+                        <td>Send Mails to Group Leaders</td>
+                        <td><a class="button button-primary" href="../email/select/">Send Mails</a></td>
+                    </tr>
+                    <tr>
+                        <td>Change or View current limits for each sport</td>
+                        <td><a class="button button-primary" href="../sportlimit/select/">Sport Limits</a></td>
+                    </tr>
+                    <tr>
+                        <td>View Stats</td>
+                        <td><a class="button button-primary" href="../stats/">Stats</a></td>
+                    </tr>
+                    <tr>
+                        <td>Userlist to confirm participants</td>
+                        <td><a class="button button-primary" href="../listuser">Confirm</a></td>
+                    </tr>
+
+                    <tr>
+                        <td>Send FINAL confirmation mail or view PDF</td>
+                        <td><a class="button button-primary" href="/2015/pcract/">View</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br><a class="button" href="../logout/">Logout</a>
+            <br>
+        </div>
+    </div>
+</div>
+{% endblock body %}

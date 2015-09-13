@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+table
+{
+    font-family: arial;
+    text-align: center;
+    border:1px solid black;
+}
+th
+{
+    width: 100px;
+    color:white;
+    background:#226;
+}
+td
+{
+    padding-left: 25px;
+    padding-right: 20px;
+}
+tr:nth-child(even)
+{
+    background: #eee;
+}
+    </style>
+    <title></title>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>College</th>
+            <th>Send Mail</th>
+            <th>Send PDF</th>
+        </tr>
+        {% for gl in gleader_list %}
+            <tr>
+                <td>{{gl.name}} {{gl.id}}</td>
+                <td>{{gl.college}}</td>
+                <td><a href="/2014test/email/{{gl.id}}/">Send</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

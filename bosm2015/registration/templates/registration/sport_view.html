@@ -1,0 +1,40 @@
+{% extends "registration/base.html" %}
+{% block title %}
+    BOSM 2015 | Sport View
+{% endblock title %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="twelve columns">
+                <h3>Sport Wise View</h3>
+                <p>Please note that coaches are not listed here!</p>
+            </div>
+        </div>
+        <div class="row">
+            {% for event in events %}
+                <div class="four columns">
+                    <h4>{{event.name}}</h4>
+                    <table class="u-full-width">
+                        <thead>
+                            <tr>
+                                <th>S. No</th>
+                                <th>Name</th>
+                                <th>Sex</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for member in event.members %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{member.name}}</td>
+                                <td>{{member.gender}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% cycle '' '' '</div><div class="row">' %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock body %}

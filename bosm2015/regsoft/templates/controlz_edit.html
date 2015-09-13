@@ -1,0 +1,95 @@
+<html>
+<head>
+<title>
+Controlz|EDIT PARTICIPANT
+</title>
+</head>
+<body>
+<div style = "background-color: #3B3738; color: #D9853B; height:40px;font-size: 27px; text-align: center; width: 100%; margin: auto;box-shadow: 0px 0px 30px rgba(33,62,83,0.7)  inset;left:0;top:0; border-radius: 7px;font-family:agency fb;">EVENT REGISTRATION SYSTEM</div>
+<div style = "background: #558C89; color: #E9E581;height:37px;font-size: 24px; text-align: center; width: 100%; padding-top:5px;margin: auto; margin-top: 15px; box-shadow: 0px 0px 25px rgba(33,62,83,0.7) inset; border-radius: 7px;font-family:agency fb;">Controlz BOOTH</div><br>
+<center>
+<strong> EDIT PARTICIPANT </STRONG>
+<div class= "tim">
+Name: {{participant.name}} <br>
+Gender: {{participant.gender}}<br>
+Events Currently Registered: <br>
+ <table>
+        <tr>
+            <th>Event Name</th>
+            
+        </tr>
+        {% for x in participant_event_list %}
+            <tr><td>{{x.name}}</td>
+             
+            </tr>
+        {% endfor %}
+    </table>
+
+<form method="POST" action="http://www.bits-bosm.org/2015/regsoft/controlz/edit/{{participant.id}}/">
+<input type="hidden" name="addorremove" value="add"/>
+ADD AN EVENT
+<input type=select list=eventsadd  name='eventselected' required>
+<datalist id=eventsadd >
+{% for x in event_add_list %}}
+   <option> {{ x.name}} </option>
+{% endfor %}
+</datalist>
+<input type="submit" value="Add Event"/>
+</form>
+
+<form method="POST" action="http://www.bits-bosm.org/2015/regsoft/controlz/edit/{{participant.id}}/">
+<input type="hidden" name="addorremove" value="remove"/>
+REMOVE EVENT
+<input type=select list=eventsremove name='eventselected' required>
+<datalist id=eventsremove >
+{% for x in participant_event_list %}}
+   <option> {{ x.name}} </option>
+{% endfor %}
+</datalist>
+<input type="submit" value="Remove Event"/>
+</form>
+{{ message }}
+<form method="POST" action="http://www.bits-bosm.org/2015/regsoft/controlz/receipt/">
+<input type="hidden" name="formtype" value="addform"/>
+<input type="hidden" name="code" id="code" value="{{encoded}}"/>
+<input type="submit" value="Go Back"/>
+</form>
+</center>
+</tim>
+    <style>
+.tim{
+	text-align:center;
+	margin-left:30%;
+    margin-right:30%;
+	margin-top:60px;
+}
+table
+{
+    font-family: agency fb;
+    text-align: center;
+    border:1px solid black;
+    font-size:1em;
+    border-radius: 7px;
+}
+th
+{
+    width: 12%;
+    color:white;
+    background:#7E8F7C;
+}
+td
+{
+    padding-left: 25px;
+    padding-right: 20px;
+}
+tr:nth-child(even)
+{
+    background: #DFE2DB;
+}
+tr:nth-child(odd)
+{
+    background: #FDF3E7;
+}
+</style>
+</body>
+</html>

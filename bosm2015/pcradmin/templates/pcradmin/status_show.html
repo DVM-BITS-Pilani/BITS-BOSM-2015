@@ -1,0 +1,23 @@
+{% extends "pcradmin/base.html" %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="twelve columns textcenter">
+            <h1>Set User Status</h1>
+            <a href="{% url 'pcradmin:dashboard' %}" class="button button-primary">Dashboard</a><br>
+            Status for <strong>{{ username }}</strong> with email <strong>{{ email }}</strong> changed to 
+            {% if status_bin == 0 %}
+                <span style="color : red;">inactive</span>
+            {% elif status_bin == 1 %}
+                <span style="color : green;">active</span>
+            {% endif %}
+            <form action = "{% url 'pcradmin:statchange' %}" method= "POST">
+            {% csrf_token %}
+            <input type="hidden" name="email" value="{{ email }}"><br>
+            <input type="hidden" name="status" value="{{ status }}"><br>
+            <input type="submit" value="send alert mail">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock body %}

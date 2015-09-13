@@ -1,0 +1,28 @@
+{% extends "pcradmin/base.html" %}
+{% block body %}
+<h1 align = "center"> Change the Individual team limits for different teams</h1>
+	<table class="u-full-width">
+	<thead>
+		<tr>
+			<th>Name of the Group leader</th>
+			<th>Name of the College</th>
+			<th>Change the Individual team limit</th>
+		</tr>
+    </thead>
+	<tbody>	
+	<form action="./changelimit" method="POST">
+	{% csrf_token %}
+	{% for p in u_list %}
+		<tr>
+			<th>{{p.firstname}} {{p.lastname}}</th	>
+			<th>{{p.college}}</th>
+			<th><input type="radio" name="uid" value={{p.id}} /></th>
+		</tr>
+	{% endfor %}
+	
+	</tbody>
+	</table>
+	<button type="submit" align="center">submit</button>
+	<br><a class="button" href="./dashboard">dashboard</a>
+	</form>
+{% endblock body %}

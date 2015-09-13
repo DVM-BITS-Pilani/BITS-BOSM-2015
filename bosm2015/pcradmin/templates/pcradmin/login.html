@@ -1,0 +1,22 @@
+{% extends "pcradmin/base.html" %}
+{% block title %}
+	BOSM 2015 | PCr Login
+{% endblock title %}
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="twelve columns textcenter">
+		<h1>Log into BOSM 2015</h1>
+			{% csrf_token %}
+			<form action='../login' method='POST'>
+				{% csrf_token %}
+				<label for="username">Username</label>
+				<input type="text" maxlength="254" name="username" />
+				<label for="password">Password:</label>
+				<input type="password" name="password" ><br/>
+				<button type="submit" name="submit" value="Login" > submit </button>
+			</form>			
+		</div>
+	</div>
+</div>
+{% endblock body %}

@@ -1,0 +1,21 @@
+{% extends "pcradmin/base.html" %}
+{% block body %}
+<h1>Change Sports limits </h1>
+<table class="u-full-width">
+<form method="POST" action="./sports_limits_changed">
+{% for p in a_list %}
+{% csrf_token %}
+		<tr>
+			<th>{{p.name}}</th>
+			<th><input type="radio" name="eventid" value={{p.id}} /></th>
+		</tr>
+	{% endfor %}
+		<tr> 
+			<th><button type="submit" align="center">submit</button></th>
+			<th><input type="text" name="limit" value=""/></th>
+		</tr> 
+
+	</table>
+<input type="hidden" name="userid" value={{uid}} />
+	</form>
+{% endblock body %}

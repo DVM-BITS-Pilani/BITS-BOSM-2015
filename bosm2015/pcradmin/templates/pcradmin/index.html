@@ -1,0 +1,41 @@
+{% extends "pcradmin/base.html" %}
+{% block body %}
+  <div class="container">
+    <div class="row">
+      <div class="twelve columns textcenter" style="margin-top: 10%;">
+        <h1>PCR Administration</h1>
+      </div>
+    </div>
+    <form>
+      <div class="row">
+        <div class="four columns">
+          <p></p>
+        </div>
+        <div class="four columns textcenter">
+          <label for="exampleEmailInput"></label>
+          <input class="u-full-width" type="email" placeholder="login" id="exampleEmailInput">
+        </div>
+        <div class="four columns">
+          <p></p>          
+        </div>
+      </div>
+      <div class="row">
+        <div class="four columns">
+          <p></p>
+        </div>
+        <div class="four columns textcenter">
+          <label for="exampleEmailInput"></label>
+          <input class="u-full-width" type="email" placeholder="password" id="exampleEmailInput">
+        </div>
+        <div class="four columns">          
+          <p></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="twelve columns textcenter">
+          <input class="button-primary" type="submit" value="Submit">
+        </div>
+      </div>
+    </form>
+  </div> 
+{% endblock body %}

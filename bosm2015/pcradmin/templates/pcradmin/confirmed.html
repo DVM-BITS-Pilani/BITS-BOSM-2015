@@ -1,0 +1,75 @@
+{% extends "pcradmin/base.html" %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="twelve columns textcenter">
+            <h2>{{uname}} </h2>
+
+            <br>
+            
+                      <br><a class="button" href="./dashboard">DashBoard</a>
+                      <!-- <br><a class="button" href="./listuser">back</a> -->
+                      <form action="../participantlist/" method = 'POST' id= 'form3'>
+                        {% csrf_token %}
+                        <input type = 'hidden' name='uname' value = {{uname}} form='form3' >
+                      <br><button type= 'submit' name='uname2' value = {{uname}} form= 'form3'> Back</button>
+                      </form>
+                      
+            <table class="u-full-width">
+                  {% if plist %}
+                  <thead>
+                    <tr>
+                      
+                      <th>S.No</th>
+                      <th>Name</th>
+                      <th>Sex</th>
+                      <th>Events</th>
+                      <th>Phone</th>
+                      <th>Email</th>
+                      <th>Confirmation</th>
+                      
+
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                   
+                  {% for member in plist %} 
+                    <tr>
+                      
+                      <td>{{forloop.counter}}</td>
+                      <td>{{member.name}}</td>
+                      <td>{{member.gender}}</td>
+                      <td>{% for event in member.events.all %}{{event}}  {% endfor %}</td>
+                      <td>{{member.phone}}</td>
+                      <td>{{member.email_id}}</td>
+                      {% if member.confirmation %}
+                        <td style="color: green">Yes</td>
+                    
+                      {% else %}
+                        <td style="color: red">No</td>
+                    
+                {% endif %}
+                
+
+                     
+                      
+
+                      
+                    </tr>      
+                  {% endfor %}
+                
+                
+                </form>
+                  {% else %}
+                  <thead>
+                    <tr>
+                      <td>No participant registered</td>
+                    </tr>
+                  </thead>
+                  {% endif %}
+                </table>
+        </div>
+    </div>
+</div>
+{% endblock body %}

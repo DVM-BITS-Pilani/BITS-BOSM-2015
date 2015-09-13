@@ -1,0 +1,80 @@
+<html style = "height: 100%;">
+<head>
+<title>
+RECEPTION AND ACCOMODATION HOME</title>
+</head>
+
+<body style = "height: 100%;">
+
+<br />
+<div style = "background-color: #3B3738; color: #D9853B; height:40px;font-size: 27px; text-align: center; width: 100%; margin: auto;box-shadow: 0px 0px 30px rgba(33,62,83,0.7)  inset;left:0;top:0; border-radius: 7px;font-family:agency fb;">EVENT REGISTRATION SYSTEM</div>
+<div style = "background: #558C89; color: #E9E581;height:37px;font-size: 24px; text-align: center; width: 100%; padding-top:5px;margin: auto; margin-top: 15px; box-shadow: 0px 0px 25px rgba(33,62,83,0.7) inset; border-radius: 7px;font-family:agency fb;">RECEPTION AND ACCOMODATION</div>
+<br />
+<center><img src = "http://bits-oasis.org/2014main/images/logo.png" style = " height:auto;width:auto;border: 0; margin-top: 10px"></center>
+<br>
+<br />
+<br />
+<div class="bing">
+<form action="http://www.bits-oasis.org/2014/regsoft/reconec/" method="post" align ="center">
+{% csrf_token %}
+<input type="hidden" name="formtype" id="code" value="home"/>
+<label for "ucid"></label><input autofocus=""type="text" placeholder="ENTER GL-CODE "  name="code" id="ucid" required/><br>
+<input  type="submit" value="SCAN"/><br>
+{{ error }}
+</form>
+<p align='center'><input type="button" align="center" value="Show updated Teams" onclick="window.location='http://www.bits-oasis.org/2014/showteams/'"/></p>
+</div>
+<center>
+    <br>
+    <a href="/2014/regsoft/recnacc/bhavanwise/" target="_blank">Bhavan College List </a>
+    <br>
+    <a href="/2014/regsoft/recnacc/all_bhavans/" target="_blank">Overall Room Availibilty</a>
+    <br>
+    <a href="/2014/regsoft/recnacc/roomdetails/" target="_blank">Check Room Details</a>
+</center
+<style>
+body{ background-color: #ECECEA;
+}
+.bing{font-weight:bold;
+	margin-top: 3px;
+	margin-right: 460px;
+	margin-left: 460px;
+	height: 140px;
+	padding-top: 2px;
+     text-align: center;
+	background-color: #7E8F7C;
+	font-family: agency fb;
+	color: #B71427;
+	border: 10px solid #ECECEA;
+	border-radius: 20px;
+	
+        
+}
+
+input{   border-style: solid;
+border-width: 3px;
+border-color: #7E8F7C ;
+width: 260px;
+border-radius:8px;
+background-color: white;
+width: 260px;
+color: #4A4A4A ;
+font-family:agency fb;
+font-size:1.1em;
+font-weight:bold;
+padding-left:10px;
+   }
+   input:focus{
+ 
+outline: 0px;
+}
+
+
+input::-webkit-input-placeholder {
+   color: #909090 ;
+   text-align:center;
+   
+}
+</style>
+</body>
+</html>

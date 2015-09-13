@@ -1,0 +1,29 @@
+{% extends "registration/base.html" %}
+{% block title %}
+    BOSM 2015 | Rules
+{% endblock title %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="twelve columns">
+                <h3>Event Limits</h3>
+                <p>There is a limit on the minimum and maximum number of participants that can be registered for a sport. These limits are listed here.<br>
+                Please plan accordingly</p>
+                <table class="u-full-width">
+                    <thead>
+                        <th>Event</th>
+                        <th>Minimum Participants</th>
+                        <th>Maximum Participants</th>
+                    </thead>
+                    {% for event in eventdata|dictsort:"name" %}
+                    <tbody>
+                        <td>{{event.name}}</td>
+                        <td>{{event.min_limit}}</td>
+                        <td>{{event.max_limit}}</td>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

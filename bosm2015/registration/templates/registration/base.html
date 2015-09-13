@@ -1,0 +1,67 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>
+  {% block title %}
+      BOSM 2015
+  {% endblock title %}      
+  </title>
+  <meta name="description" content="">
+  <meta name="author" content="Nikhil Verma">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'pcradmin/css/skeleton.css' %}">
+  <link rel="icon" type="image/png" href="{% static 'pcradmin/images/favicon.ico' %}">
+  {% block head %}
+    
+  {% endblock head %}
+</head>
+<body>
+{% block header %}
+  <div class="container">
+    <div class="row">
+      <div class="twelve columns textcenter">
+        <h2>BOSM 2015</h2>
+        <h3>{{name}}</h3>
+        <h4>{{college}}</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="twelve columns textcenter">
+        <a href="{% url 'registration:dashboard' %}" class="button button-primary">Member Summary</a>
+        <a href="{% url 'registration:sport_view' %}" class="button">Sport-wise View</a>
+      </div>
+      <div class="twelve columns textcenter">
+        <a href="{% url 'registration:rules' %}" class="button button-primary">Event Limits</a>
+        <a href="{% url 'registration:add' %}" class="button">Add Member</a>
+        <a href="{% url 'registration:delete' %}" class="button">Delete Member</a>
+        <a href="{% url 'registration:edit' %}" class="button">Edit Member</a>
+        <a href="{% url 'registration:logout' %}" class="button button-primary">Logout</a>
+      </div>
+      {% if errors %}
+      <div class="twelve columns textcenter errorlist">
+        <ul>
+        {% for error in errors %}
+          <li>{{error}}</li>
+        {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock header %}
+{% block body %}
+    
+{% endblock body %}
+  <div class="container">
+    <div class="row">
+      <div class="twelve columns">
+        <footer id="footer" class="textcenter">
+          &copy; Department of Visual Media, BITS Pilani
+        </footer>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

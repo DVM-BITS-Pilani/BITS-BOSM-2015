@@ -1,0 +1,80 @@
+{% extends "registration/base.html" %}
+{% block title %}
+    BOSM 2015 | Dashboard
+{% endblock title %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="twelve columns" id="participants">
+                <h4>PARTICIPANTS</h4>
+                <table class="u-full-width">
+                  {% if participants %}
+                  <thead>
+                    <tr>
+                      <th>S.No</th>
+                      <th>Name</th>
+                      <th>Sex</th>
+                      <th>Sports</th>
+                      <th>Phone</th>
+                      <th>Email</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for member in participants %}
+                    <tr>
+                      <td>{{forloop.counter}}</td>
+                      <td>{{member.name}}</td>
+                      <td>{{member.gender}}</td>
+                      <td>{% for event in member.events.all %}{{event}}  {% endfor %}</td>
+                      <td>{{member.phone}}</td>
+                      <td>{{member.email_id}}</td>
+                    </tr>      
+                  {% endfor %}
+                  </tbody>
+                  {% else %}
+                  <thead>
+                    <tr>
+                      <td>No participant registered</td>
+                    </tr>
+                  </thead>
+                  {% endif %}
+                </table>
+            </div>
+            <div class="twelve columns" id="coach">
+            <h4>COACHES</h4>
+                <table class="u-full-width">
+                  {% if coaches %}
+                  <thead>
+                    <tr>
+                      <th>S.No</th>
+                      <th>Name</th>
+                      <th>Sex</th>
+                      <th>Sports</th>
+                      <th>Phone</th>
+                      <th>Email</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for member in coaches %}
+                    <tr>
+                      <td>{{forloop.counter}}</td>
+                      <td>{{member.name}}</td>
+                      <td>{{member.gender}}</td>
+                      <td>{% for event in member.events.all %}{{event}}  {% endfor %}</td>
+                      <td>{{member.phone}}</td>
+                      <td>{{member.email_id}}</td>
+                    </tr>      
+                  {% endfor %}
+                  </tbody>
+                  {% else %}
+                  <thead>
+                    <tr>
+                      <td>No coach registered</td>
+                    </tr>
+                  </thead>
+                  {% endif %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

@@ -1,0 +1,8 @@
+Django==1.8.2
+django-ckeditor==4.4.8
+django-nocaptcha-recaptcha==0.0.18
+MySQL-python==1.2.5
+pdfkit==0.5.0
+Pillow==2.9.0
+pyPdf==1.13
+wheel==0.24.0

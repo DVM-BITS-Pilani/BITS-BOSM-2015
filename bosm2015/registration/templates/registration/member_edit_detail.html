@@ -1,0 +1,62 @@
+{% extends "registration/base.html" %}
+{% block title %}
+    BOSM 2015 | Edit Members
+{% endblock title %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="twelve columns" id="participants">
+                <h4>UPDATE EXISTING MEMBER</h4>
+                <form action="." method="POST" onsubmit="savefake.value='Saving...'; savefake.disabled=true;">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="twelve columns">
+                    <label for="type">Member Type</label>
+                    <div class="two columns" style="margin-left: 0%;">
+                    <label><input type="radio" name="coach" id="type" value="False" {% if participant.coach == False %}checked{% endif %}>Participant</label>
+                    </div>
+                    <div class="two columns" style="margin-left: 0%;">
+                    <label><input type="radio" name="coach" id="type" value="True" {% if participant.coach == True %}checked{% endif %}>Coach</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="four columns">
+                    <label for="name">Name</label>
+                    <input class="u-full-width" type="text" id="name" name="name" value="{{participant.name}}">
+                  </div>
+                  <div class="two columns">
+                    <label for="sex">Sex</label>
+                    <select class="u-full-width" id="sex" name="sex">
+                      <option value="select">Select</option>
+                      <option {% if participant.gender == 'M' %}selected{% endif %} value="M">Male</option>
+                      <option {% if participant.gender == 'F' %}selected{% endif %} value="F">Female</option>
+                    </select>
+                  </div>
+                  <div class="three columns">
+                    <label for="phone">Phone</label>
+                    <input class="u-full-width" type="text" id="phone" name="phone" value="{{participant.phone}}">
+                  </div> 
+                  <div class="three columns">
+                    <label for="email">Email</label>
+                    <input class="u-full-width" type="text" id="email" name="email"value="{{participant.email_id}}">
+                  </div>
+                  <div class="twelve columns">
+                  <label>Events</label>
+                  {% for event in events %}
+                  <div class="three columns" style="margin-left: 0%;">                    
+                    <label><input type="checkbox" {% if event in participant.events.all %}checked{% endif %} name="events" value="{{ event.id }}">{{event}}</label>
+                  </div>                    
+                  {% endfor %}
+                  </div>
+                  <input type="hidden" name="id" value="{{participant.id}}">
+                  <div class="twelve columns">
+                    <input type="hidden" name="save" value="save">
+                    <input class="button-primary" type="submit" value="save" name="savefake">
+                  </div>
+                </div>                                  
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

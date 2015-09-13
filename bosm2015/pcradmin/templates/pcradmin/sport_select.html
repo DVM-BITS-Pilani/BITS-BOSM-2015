@@ -1,0 +1,34 @@
+{% extends "pcradmin/base.html" %}
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="twelve columns textcenter">
+		<h1>Change Sports Limits </h1>
+		<a href="{% url 'pcradmin:dashboard' %}" class="button button-primary">Dashboard</a>
+			<form method="POST" action="../change/">
+			{% csrf_token %}
+				<table class="u-full-width">
+				<thead>
+					<tr>
+						<th>Sport</th>
+						<th>Minimum Participants</th>
+						<th>Maximum Participants</th>
+						<th>Change</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for event in events %}
+					<tr>
+						<td>{{ event.name }}</td>
+						<td>{{ event.min_limit }}</td>
+						<td>{{ event.max_limit }}</td>
+						<td><button class="button-primary" name="event" value="{{ event.id }}">Change</button></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+				</table>
+			</form>
+		</div>
+	</div>
+</div>	
+{% endblock body %}

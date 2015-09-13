@@ -1,0 +1,21 @@
+{% extends "pcradmin/base.html" %}
+{% block title %}
+	BOSM 2015 | Reset Password
+{% endblock title %}
+{% block body %}
+<div class="container">
+	<div class="row">
+		<div class="twelve columns textcenter">
+		<h1>Reset your password</h1>
+			<form action="." method="POST">
+				{% csrf_token %}
+				<label for="username">Enter your Username. Your new password will be mailed to your e-mail id.</label>
+				<input id="username" maxlength="254" name="username" type="text" />
+				<input type="submit" name="submit" value="Reset" />
+			</form>			
+		<strong>{{message}}</strong>
+		<a class="button button-primary" href="../login">Back</a>
+		</div>
+	</div>
+</div>
+{% endblock body %}

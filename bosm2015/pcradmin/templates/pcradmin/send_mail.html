@@ -1,0 +1,19 @@
+{% extends "pcradmin/base.html" %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="twelve columns textcenter">
+            <h1>Select User</h1>
+            
+            {% for p in users %}
+            	<tr>
+            		<td>{{p.username}} </td>
+            		<td> {{p.email}} </td>
+            		<td> <button type= 'submit' name='email' value = {{p.email}} > Compose </button> </td>
+            	</tr>
+
+
+        </div>
+    </div>
+</div>
+{% endblock body %}

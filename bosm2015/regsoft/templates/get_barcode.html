@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+table
+{
+    font-family: arial;
+    text-align: center;
+    border:1px solid black;
+}
+th
+{
+    width: 100px;
+    color:white;
+    background:#226;
+}
+td
+{
+    padding-left: 25px;
+    padding-right: 20px;
+}
+tr:nth-child(even)
+{
+    background: #eee;
+}
+    </style>
+    <title></title>
+</head>
+
+<body>
+<p align="right"> Developed @ Department of Visual Media, BITS Pilani </p><br>
+<center>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>College</th>
+            <th>Code</th>
+
+        </tr>
+        {% for x in final_display %}
+            <tr>
+                <td>{{x.0}}</td>
+                <td>{{x.1}}</td>
+                <td>{{x.2}}</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    </center>
+</body>
+</html>
