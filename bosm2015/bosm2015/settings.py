@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ')xcmke+iso+pg7huh2tk0wv8#__as2zj!^oo3ytu$2$fo!lyn4'
+SECRET_KEY =*****
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -114,19 +114,17 @@ STATIC_URL = '/2015/site_media/'
 # MEDIA_URL = '/2015/media/'
 
 # Additional Package requirements
-CKEDITOR_UPLOAD_PATH = "/2015/uploads/"
+
 
 
 
 
 # Email settings
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'register@bits-bosm.org'
-EMAIL_HOST_PASSWORD = 'register@bosm'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+EMAIL_BACKEND = *****
+EMAIL_HOST = *******
+EMAIL_HOST_USER = ***************
+EMAIL_HOST_PASSWORD = ***********
+EMAIL_PORT =****
 
-#ReCAPTCHA Settings
-NORECAPTCHA_SITE_KEY = '6Lcm2AsTAAAAACQXsBFS9MDZDQkbw9LjobFcV2ld'
-NORECAPTCHA_SECRET_KEY = '6Lcm2AsTAAAAADvvj15ryDQIoR-vv5bYqdFqwxPf'
+
+*****
