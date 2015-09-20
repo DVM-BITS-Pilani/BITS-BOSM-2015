@@ -368,6 +368,65 @@ def get_pdf(request):
 # 	f.close()
 # 	return
 
+
+def xlsx(request):
+	from django.http import HttpResponse, HttpResponseRedirect  
+	import xlsxwriter
+
+	try:  
+	    import cStringIO as StringIO
+	except ImportError:  
+	    import StringIO
+	a_list = []
+
+	from registration.models import Participant
+	participants = Participant.objects.filter(controlzpay=True)
+
+	for p in participants:
+		p.college = p.gleader.userprofile_set.last().college
+		elist = [event.name for event in p.events.all()]
+		elist1=[]
+		for t in elist:
+			if 'BOYS' in t.upper():
+				t = t.upper()
+				t = t[:t.find(" (BOYS)")]
+				elist1.append(t.title())
+			elif 'GIRLS' in t.upper():
+				t = t.upper()
+				t = t[:t.find(" (GIRLS)")]
+				elist1.append(t.title())
+			else: 
+				elist1.append(t)
+
+		p.event = ",".join(elist1)
+		a_list.append({'obj': p})
+	data = sorted(a_list, key=lambda k: k['obj'].college)
+	output = StringIO.StringIO()
+	workbook = xlsxwriter.Workbook(output)
+	worksheet = workbook.add_worksheet('new-spreadsheet')
+	date_format = workbook.add_format({'num_format': 'mmmm d yyyy'})
+	for i, row in enumerate(data):
+	    """for each object in the date list, attribute1 & attribute2
+	    are written to the first & second column respectively,
+	    for the relevant row. The 3rd arg is a failure message if
+	    there is no data available"""
+
+	    worksheet.write(i, 0, i+1)
+	    worksheet.write(i, 1, getattr(row['obj'], 'name', 'attribute1 not available'))
+	    worksheet.write(i, 2, getattr(row['obj'], 'gender', 'attribute2 not available'))
+	    worksheet.write(i, 3, getattr(row['obj'], 'phone', 'attribute1 not available'))
+	    worksheet.write(i, 4, getattr(row['obj'], 'event', 'attribute1 not available'))
+	    worksheet.write(i, 5, getattr(row['obj'], 'college', 'attribute1 not available'))
+	workbook.close()
+	filename = 'ExcelReport.xlsx'
+	output.seek(0)
+	response = HttpResponse(output.read(), content_type="application/ms-excel")  
+	response['Content-Disposition'] = 'attachment; filename=%s' % filename
+	return response
+
+
+
+
 # def view_pdf(request):
 # 	#first generating
 # 	if request.POST:
